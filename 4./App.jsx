@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logIn, logOut } from "./actions/user";
+import { logIn } from "./actions/user";
+import userSlice from "./reducers/user";
 
 const App = () => {
   const user = useSelector((state) => state.user);
@@ -17,7 +18,7 @@ const App = () => {
   }, []);
 
   const onLogout = useCallback(() => {
-    dispatch(logOut());
+    dispatch(userSlice.actions.logOut());
   }, []);
 
   useEffect(() => {

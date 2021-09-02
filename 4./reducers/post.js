@@ -1,5 +1,7 @@
-const { produce } = require('immer');
-const initialState = [];
+const { createSlice } = require('@reduxjs/toolkit');
+const initialState = {
+  data: [],
+};
 
 const postReducer = (prevState = initialState, action) => {
   return produce(prevState, (draft) => {
@@ -13,4 +15,15 @@ const postReducer = (prevState = initialState, action) => {
   })
 };
 
-module.exports = postReducer;
+const postSlice = createSlice({
+  name: 'post',
+  initialState,
+  reducers: { // sync
+
+  },
+  extraReducers: { // async
+
+  }
+})
+
+module.exports = postSlice;

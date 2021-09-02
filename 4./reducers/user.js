@@ -1,3 +1,4 @@
+const { createSlice } = require('@reduxjs/toolkit');
 const { produce } = require('immer');
 
 const initialState = {
@@ -30,4 +31,18 @@ const userReducer = (prevState = initialState, action) => {
   });
 };
 
-module.exports = userReducer;
+const userSlice = createSlice({
+  name: "user",
+  initialState,
+  reducers: {
+    // sync
+    logOut(state, action) {
+      state.data = null;
+    }
+  },
+  extraReducers: {
+    // async
+  },
+});
+
+module.exports = userSlice;

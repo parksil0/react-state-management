@@ -1,3 +1,9 @@
+const { createAsyncThunk } = require('@reduxjs/toolkit');
+
+const logIn = createAsyncThunk('user/logIn', async (data, thunkAPI) => {
+  
+});
+
 const logIn = () => { // async action creator
   return (dispatch, getState) => { // async action
     dispatch(logInRequest());
@@ -39,13 +45,6 @@ const logInFailure = (error) => {
   }
 };
 
-const logOut = () => {
-  return {
-    type: LOG_OUT,
-  };
-};
-
 module.exports = {
   logIn,
-  logOut,
 };
