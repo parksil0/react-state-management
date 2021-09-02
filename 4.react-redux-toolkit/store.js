@@ -12,8 +12,8 @@ const firstMiddleware = (store) => (next) => (action) => {
 
 const store = configureStore({
   reducer,
-  middleware: [firstMiddleware, ...getDefaultMiddleware], // getDefaultMiddleware는 deprecated됨
-  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(firstMiddleware),
+  // middleware: [firstMiddleware, ...getDefaultMiddleware], // getDefaultMiddleware는 deprecated됨
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(firstMiddleware),
   devTools: process.env.NODE_ENV !== 'production',
   // preloadedState: // ssr 전용
 });
