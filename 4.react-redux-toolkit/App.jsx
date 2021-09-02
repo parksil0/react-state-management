@@ -11,7 +11,7 @@ const App = () => {
   const onClick = useCallback(() => {
     dispatch(
       logIn({
-        id: "sealPark",
+        id: "SealPark",
         password: "1234",
       })
     );
