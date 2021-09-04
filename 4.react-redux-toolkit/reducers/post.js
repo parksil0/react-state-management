@@ -1,4 +1,6 @@
 const { createSlice } = require('@reduxjs/toolkit');
+const { addPost } = require('../actions/post');
+
 const initialState = {
   data: [],
 };
@@ -21,9 +23,22 @@ const postSlice = createSlice({
   reducers: { // sync
 
   },
-  extraReducers: { // async
+  extraReducers: (builder) => 
+    builder.addCase(addPost.pending, (state, action) => {
 
-  }
+    })
+    .addCase(addPost.fulfilled, (state, action) => {
+      state.date.push(action.payload)
+    })
+    .addCase(addPost.rejected, (state, action) => {
+
+    })
+    .addMatcher((action) => { // 공통로직 정의 시
+      // return action.type.includes('/pending')
+    })
+    .addDefaultCase((state, action) => {
+
+    })
 })
 
 module.exports = postSlice;

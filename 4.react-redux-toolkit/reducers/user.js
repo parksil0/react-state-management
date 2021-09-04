@@ -1,5 +1,5 @@
 const { createSlice } = require('@reduxjs/toolkit');
-const { produce } = require('immer');
+const { logIn } = require('../actions/user');
 
 const initialState = {
   isLoggingIn: false,
@@ -42,7 +42,19 @@ const userSlice = createSlice({
   },
   extraReducers: {
     // async
+    [logIn.pending](state, action) { // user/logIn/pending
+      state.isLoggingIn = true;
+    },
+    [logIn.fulfilled](state, action) { // user/logIn/fulfilled
+      state.data = action.payload; // id, nickname
+      state.isLoggingIn = false;
+    },
+    [logIn.rejected](state, action) { // user/logIn/rejected
+      state.data = null;
+      state.isLoggingIn = false;
+    },
   },
 });
 
 module.exports = userSlice;
+ 
