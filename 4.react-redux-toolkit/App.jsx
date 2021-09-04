@@ -3,10 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { addPost } from "./actions/post";
 import { logIn } from "./actions/user";
 import userSlice from "./reducers/user";
+import { createSelector } from "@reduxjs/toolkit";
+
+const priceSelector = (state) => state.user.prices;
+const sumPriceSelector = createSelector(priceSelector, (prices) =>
+  prices.reduce((a, c) => a + c, 0)
+);
 
 const App = () => {
   const user = useSelector((state) => state.user);
-  const posts = useSelector((state) => state.posts);
+  const email = useSelector((state) => state.user.email);
+  const password = useSelector((state) => state.user.password);
+  const totalPrices = useSelector(sumPriceSelector);
   const dispatch = useDispatch();
 
   const onClick = useCallback(() => {
@@ -40,7 +48,13 @@ const App = () => {
       ) : (
         <button onClick={onLogout}>로그아웃</button>
       )}
-      <button onClick={onAddPost}>글쓰기</button>
+      <div>
+        <b>{totalPrices}</b>
+      </div>
+      <form action="">
+        <input type="email" />
+        <input type="password" />
+      </form>
     </div>
   );
 };
